@@ -26,3 +26,4 @@ yg = layer2.forward(pg);
 qg = layer3.forward(yg);
 zg = layer4.forward(qg);
 surf(X,Y,reshape(double(zg),[101,101]));
+print -dpng "day2/exercise2_3.png";
