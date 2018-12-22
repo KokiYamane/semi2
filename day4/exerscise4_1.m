@@ -1,5 +1,15 @@
 pkg load image
 
+function y = sigmoid_neuron(x,w,h)
+  p = w*x;
+  y = y = 1 ./ (1 + exp(-p-h));
+end
+
+function loss = loss_function( z, t)
+  [row, col] = size(z);
+  loss = sum(sum((z-t).^2)) / (2*col);
+end
+
 mnist = load_dataset();
 
 %use MNIST traininig datasets
@@ -42,27 +52,28 @@ for epoch=1:EPOCH
     z = sigmoid_neuron(y,u,c);
     t = train_label_vecs(1:10,n);
     o(1:10,n)=z;
+    
     delta_out = (z-t).*(z.*(1-z));
     delta_hidden = (delta_out'*u)'.*(y.*(1-y));
+    
     u=u-LAMBDA * delta_out * y';
     c=c-LAMBDA * delta_out;
     w=w-LAMBDA * delta_hidden * x';
     b=b-LAMBDA * delta_hidden;
   end
-  
+
   % calculate current LOSS
   loss(epoch) = loss_function(o, train_label_vecs);
 end
 
-%%%%%%%%%%% Display the results %%%%%%%%%%%
-
+%%%%%%%%%% Display the results %%%%%%%%%%%%%%%
 % Display cost change graph
 figure(1);
 plot([1:epoch], loss)
 title('Cost on the training data');
 xlabel('Epoch');
 ylabel('Cost');
-
+ 
 % Calculate train accuracy
 train_res_mat = zeros(10, 10);
 for n=1:train_num
@@ -71,22 +82,22 @@ for n=1:train_num
   y = sigmoid_neuron(x,w,b);
   z = sigmoid_neuron(y,u,c);
   [value, index] = max(z);
-  train_res_mat(index, train_labels(n)+1) = ...
-  train_res_mat(index, train_labels(n)+1) + 1;
+  train_res_mat(index, train_labels(n)+1) = train_res_mat(index, train_labels(n)+1) + 1;
 end
 train_res_mat
 train_accuracy = trace(train_res_mat)/sum(sum(train_res_mat))
-
-% Calculate train accuracy
-train_res_mat = zeros(10, 10);
-for n=1:train_num
-  img = train_images(:,:,1,n);
+ 
+% Calculate test accuracy
+test_res_mat = zeros(10, 10);
+for n=1:test_num
+  img = test_images(:,:,1,n);
   x = img(:);
   y = sigmoid_neuron(x,w,b);
   z = sigmoid_neuron(y,u,c);
   [value, index] = max(z);
-  train_res_mat(index, train_labels(n)+1) = ...
-  train_res_mat(index, train_labels(n)+1) + 1;
+  test_res_mat(index, test_labels(n)+1) = test_res_mat(index, test_labels(n)+1) + 1;
 end
-train_res_mat
-train_accuracy = trace(train_res_mat)/sum(sum(train_res_mat))
+test_res_mat
+test_accuracy = trace(test_res_mat)/sum(sum(test_res_mat))
+
+print -dpng "day4/exercise4_1.png";
