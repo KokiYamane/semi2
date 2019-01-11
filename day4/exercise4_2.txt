@@ -1,0 +1,43 @@
+# Created by Octave 4.4.1, Fri Jan 11 09:13:01 2019 GMT <unknown@surface-pro>
+# name: train_res_mat
+# type: matrix
+# rows: 10
+# columns: 10
+ 97 0 0 1 0 0 1 0 0 2
+ 0 116 1 0 0 0 1 0 0 0
+ 0 0 97 0 0 0 1 0 0 0
+ 0 0 0 90 0 0 0 0 0 0
+ 0 0 0 1 104 0 0 0 0 1
+ 0 0 0 0 0 92 0 0 1 0
+ 0 0 0 0 1 0 91 0 0 0
+ 0 0 0 1 0 0 0 117 0 1
+ 0 0 0 0 0 0 0 0 86 0
+ 0 0 1 0 0 0 0 0 0 96
+
+
+# name: train_accuracy
+# type: scalar
+0.98599999999999999
+
+
+# name: test_res_mat
+# type: matrix
+# rows: 10
+# columns: 10
+ 42 0 2 0 0 3 2 0 2 0
+ 0 67 0 0 0 1 1 1 0 0
+ 0 0 47 3 0 0 5 1 1 0
+ 0 0 0 33 0 2 0 0 1 2
+ 0 0 0 0 48 1 2 1 2 0
+ 0 0 0 8 1 40 2 0 0 2
+ 0 0 2 0 2 0 31 0 0 0
+ 0 0 3 1 0 1 0 45 2 5
+ 0 0 1 0 0 1 0 0 30 0
+ 0 0 0 0 4 1 0 1 2 45
+
+
+# name: test_accuracy
+# type: scalar
+0.85599999999999998
+
+

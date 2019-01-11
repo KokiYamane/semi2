@@ -1,6 +1,6 @@
 function sample_dataset=read_image()
 
-  imgDirName = 'sampledata';
+  imgDirName = 'data/sampledata';
   csvfile = 'list.csv';
 
   if exist(imgDirName)
@@ -33,12 +33,12 @@ function sample_dataset=read_image()
   end
   
   sn = randperm(imgNum);
-  sample_dataset.test_images = out_images(:,:,1,sn(1:1288));
-  sample_dataset.test_labels = out_labels(sn(1:1288),1);
-  %sample_dataset.train_images = out_images(:,:,1,sn(1:1000));
-  %sample_dataset.train_labels = out_labels(sn(1:1000),1);
-  %sample_dataset.test_images = out_images(:,:,1,sn(1001:end));
-  %sample_dataset.test_labels = out_labels(sn(1001:end),1);
+  % sample_dataset.test_images = out_images(:,:,1,sn(1:1288));
+  % sample_dataset.test_labels = out_labels(sn(1:1288),1);
+  sample_dataset.train_images = out_images(:,:,1,sn(1:1000));
+  sample_dataset.train_labels = out_labels(sn(1:1000),1);
+  sample_dataset.test_images = out_images(:,:,1,sn(1001:end));
+  sample_dataset.test_labels = out_labels(sn(1001:end),1);
 end
 
   
